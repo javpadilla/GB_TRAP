@@ -79,9 +79,18 @@ void setup() {
 
 
   mySerial.begin(9600);
-  delay(300);//Wait chip initialization is complete
+  delay(100);//Wait chip initialization is complete
   sendCommand(CMD_SEL_DEV, DEV_TF);
   sendCommand(CMD_PLAY_W_VOL, 0x1F05);
+  digitalWrite(LED_R, 1);
+  delay(50);
+  digitalWrite(LED_R, 0);
+  delay(50);
+  digitalWrite(LED_R, 1);
+  delay(50);
+  digitalWrite(LED_R, 0);
+  delay(100);
+  digitalWrite(LED_R, 1);
   servo_off();
 
 }
@@ -182,7 +191,7 @@ void loop() {
   {
     sendCommand(CMD_PLAY_W_VOL, 0x1F02);
     close();
-    delay(3700);
+    delay(1300);
     for (led_bar = 0; led_bar <= 11; led_bar++)
     {
       digitalWrite(led_bar, 1);
@@ -201,7 +210,7 @@ void loop() {
     }
 
     PSW_A = 1;
-    sendCommand(CMD_PLAY_W_VOL, 0x1F04);
+    sendCommand(CMD_PLAY_W_VOL, 0x1504);
     digitalWrite(LED_A, 0);
     delay(200);
     digitalWrite(LED_A, 1);
@@ -217,6 +226,7 @@ void loop() {
       digitalWrite(led_bar, 0);
       delay(30);
     }
+    digitalWrite(LED_R, 1);
 
 
   }
